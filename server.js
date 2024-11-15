@@ -1,8 +1,8 @@
 // siin käivitan serverit
-
 import express from "express";
 import dotenv from "dotenv"  //salastatud väärtuste pärast
 import todoRouter from "./routes/todo.router.js";
+import authRouter from "./routes/auth.router.js";
 
 dotenv.config()  //get saame browserist kätte, POST ei saa
 
@@ -12,7 +12,9 @@ const app = express() //teen mooduli ja käivitan expressi seal sees
 
 app.use(express.json())
 
-app.use('/api/v1', todoRouter)
+app.use("/api/v1", authRouter);
+
+app.use('/api/v1', todoRouter);
 
 app.listen(PORT, () => {
     console.log(`Server listening on http://localhost:${PORT}`); //
