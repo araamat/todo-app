@@ -3,6 +3,7 @@ import express from "express";
 import dotenv from "dotenv"  //salastatud väärtuste pärast
 import todoRouter from "./routes/todo.router.js";
 import authRouter from "./routes/auth.router.js";
+import morgan from "morgan";
 
 dotenv.config()  //get saame browserist kätte, POST ei saa
 
@@ -11,9 +12,9 @@ const PORT = process.env.PORT || 3006 //lambi port ja PORT läheb app.listen ka 
 const app = express() //teen mooduli ja käivitan expressi seal sees
 
 app.use(express.json())
+app.use(morgan('combined'));
 
 app.use("/api/v1", authRouter);
-
 app.use('/api/v1', todoRouter);
 
 app.listen(PORT, () => {
