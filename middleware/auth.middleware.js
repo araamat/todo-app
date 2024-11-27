@@ -5,7 +5,7 @@ export const authMiddleware = async (request, response, next) => {
 
 
   try {
-    const token = request.headers("Authorization")?.replace("Bearer ", "");
+    const token = request.header("Authorization")?.replace("Bearer ", "");
 
     if (!token) {
       return response.status(401).json({
